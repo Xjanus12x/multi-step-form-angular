@@ -22,7 +22,7 @@ export class NavigationComponent {
   }
   constructor(private validFormService: ValidFormService) {
     this.validFormService.isFormValid$.subscribe((isValid) => {
-      this.isFormValid = true;
+      this.isFormValid = isValid;
     });
   }
 }
