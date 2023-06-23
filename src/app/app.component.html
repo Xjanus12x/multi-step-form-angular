@@ -1,43 +1,51 @@
+<main class="md:bg-white md:p-4 md:rounded-xl md:mx-4">
+    <section class="wrapper ">
+        <section class="indicators flex justify-center gap-4 md:flex-col md:justify-start min-w-full">
+            <div class="indicator md:flex gap-3 items-center  text-white "
+                *ngFor="let content of indicatorsContent; let i = index">
+                <div class="grid place-content-center h-9 w-9 border border-magnolia  rounded-full text-center text-white font-ubuntu-medium"
+                    [ngClass]="{'activeStepIndicator': i === currentIndex}">{{content.stepNumber}}
+                </div>
+                <div class="hidden md:block">
+                    <p class="text-coolGray md:text-xs">{{content.stepLabel}}</p>
+                    <p class="md:font-ubuntu-medium md:text-sm">{{content.stepTitle}}</p>
+                </div>
+            </div>
+        </section>
+        <section class="container  min-w-full relative -top-16  md:static md:px-24 md:grid md:items-center ">
 
-    <main class="md:bg-white md:p-4 md:rounded-xl md:mx-4">
-        <section class="wrapper ">
-            <section class="indicators flex justify-center gap-4 md:flex-col md:justify-start min-w-full">
-                <div class="indicator md:flex gap-3 items-center  text-white "
-                    *ngFor="let content of indicatorsContent; let i = index">
-                    <div class="grid place-content-center h-9 w-9 border border-magnolia  rounded-full text-center text-white font-ubuntu-medium"
-                        [ngClass]="{'activeStepIndicator': i === currentIndex}">{{content.stepNumber}}
-                    </div>
-                    <div class="hidden md:block">
-                        <p class="text-coolGray md:text-xs">{{content.stepLabel}}</p>
-                        <p class="md:font-ubuntu-medium md:text-sm">{{content.stepTitle}}</p>
-                    </div>
-                </div>
-            </section>
-            <section class="container  min-w-full relative -top-16  md:static md:px-24 md:grid md:items-center ">
-
-                <div id="step-0" class="bg-white mx-4 rounded-lg md:mx-0 motion-reduce: ">
-                    <app-personal-info></app-personal-info>
-                </div>
-                <div id="step-1" class="bg-white mx-4 rounded-lg md:mx-0  hidden">
-                    <app-select-plan (isYearlyChange)="handleIsYearlyChange($event)"></app-select-plan>
-                </div>
-                <div id="step-2" class="bg-white mx-4 rounded-lg md:mx-0 hidden">
-                    <app-pick-add-ons [isYearly]="isYearly"></app-pick-add-ons>
-                </div>
-                <div id="step-3" class="bg-white mx-4 rounded-lg md:mx-0 hidden">
-                    <app-payment [isYearly]="isYearly"></app-payment>
-                </div>
-                <div id="step-4" class="bg-white mx-4 rounded-lg md:mx-0  hidden">
-                    <app-message></app-message>
-                </div>
-
-            </section>
-
-            <div class="md:px-24 min-w-full place-self-end">
-                <app-navigation (indexChange)='handleIndexChange($event)'></app-navigation>
+            <div id="step-0" class="bg-white mx-4 rounded-lg md:mx-0 motion-reduce: ">
+                <app-personal-info></app-personal-info>
+            </div>
+            <div id="step-1" class="bg-white mx-4 rounded-lg md:mx-0  hidden">
+                <app-select-plan (isYearlyChange)="handleIsYearlyChange($event)"></app-select-plan>
+            </div>
+            <div id="step-2" class="bg-white mx-4 rounded-lg md:mx-0 hidden">
+                <app-pick-add-ons [isYearly]="isYearly"></app-pick-add-ons>
+            </div>
+            <div id="step-3" class="bg-white mx-4 rounded-lg md:mx-0 hidden">
+                <app-payment [isYearly]="isYearly"></app-payment>
+            </div>
+            <div id="step-4" class="bg-white mx-4 rounded-lg md:mx-0  hidden">
+                <app-message></app-message>
             </div>
 
         </section>
 
+        <div class="md:px-24 min-w-full place-self-end">
+            <app-navigation (indexChange)='handleIndexChange($event)'></app-navigation>
+        </div>
 
-    </main>
+    </section>
+
+
+</main>
+
+<footer class="min-w-full fixed bottom-0 left-0 text-center">
+    <div class="">
+        Challenge by <a href="https://www.frontendmentor.io?ref=challenge" class="text-red-600 underline"
+            target="_blank" rel="noopener">Frontend
+            Mentor</a>.
+        Coded by <a href="https://github.com/Xjanus12x" class="text-red-600 underline">Xjanus12x</a>.
+    </div>
+</footer>
