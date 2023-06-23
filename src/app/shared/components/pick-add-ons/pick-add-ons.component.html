@@ -1,0 +1,12 @@
+<section class="personal-info grid gap-4 p-6 md:p-0" aria-labelledby="pick-add-ons">
+    <header>
+        <h2 class="font-ubuntu-bold text-primary text-2xl mb-2 md:text-3xl " id="pick-add-ons">Pick add-ons</h2>
+        <p class="text-coolGray">Add-ons help enhance your gaming experience.</p>
+    </header>
+
+    <form class="grid gap-3" *ngFor="let addOn of addOns; let i = index">
+        <app-add-on [isYearly]="isYearly" [isSelected]="addOn.isActive" [addOnLabel]="addOn.label" [addOnName]="addOn.name" [addOnDescription]="addOn.description"
+            [addOnPrice]="handlePriceChange(addOn.price,isYearly)" (click)="handleMouseEvents(i)" (keyup.enter)="handleKeyboardEvents(i)"></app-add-on>
+    </form>
+
+</section>

@@ -1,0 +1,19 @@
+<section class="personal-info grid gap-4 p-6 md:gap-6 md:p-0">
+    <header>
+        <h1 class="font-ubuntu-bold text-primary text-2xl mb-2 md:text-3xl ">Personal Info</h1>
+        <p class="text-coolGray">Please provide your name email address, and phone number.</p>
+    </header>
+
+    <form class="grid gap-3 md:gap-5">
+
+        <app-input [control]="formGroup.controls.fullName" inputId="full-name" label="Name" inputType="text"
+            inputPlaceHolder="e.g Stephen King"></app-input>
+
+        <app-input [control]="formGroup.controls.email" inputId="email" label="Email Address" inputType="email"
+            inputPlaceHolder="e.g stephenking@lorem.com"></app-input>
+
+        <app-input [control]="formGroup.controls.phoneNumber" inputId="phone-number" label="Phone Number"
+            inputType="tel" inputPlaceHolder="e.g +1 234 567 890"></app-input>
+    </form>
+</section>
+

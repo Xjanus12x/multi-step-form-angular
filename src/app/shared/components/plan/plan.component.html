@@ -1,0 +1,11 @@
+<span class="sr-only">{{planLabel}}</span>
+<article class="plan flex gap-4 py-3 px-4 rounded-lg border border-lightGray lg:flex-col lg:gap-10 " [class.selected-plan]='isActive'
+    tabindex="0">
+    <img [src]="planImg" class="md:self-start" alt="Plan icon" [class]="'self' + (isYearly ? '-start' : 'center')">
+
+    <div>
+        <h3 class="text-primary font-ubuntu-bold text-lg ">{{planName}}</h3>
+        <p class="text-coolGray font-ubuntu-medium">${{planPrice}}/{{isYearly? 'yr':'mo'}}</p>
+        <p class="text-primary" [class.hidden]="!isYearly"> 2 months free</p>
+    </div>
+</article>

@@ -1,0 +1,11 @@
+<div class="flex justify-center items-center gap-4 font-ubuntu-medium bg-alabaster p-3 rounded-md"
+    aria-label="Toggle between monthly and yearly plans">
+    <label class="text-coolGray" [class.active-plan]="!isYearly" for="plan-type">Monthly</label>
+    <div class="bg-alabaster option" (click)="toggleIsYearly()">
+        <span class="bg-primary absolute inset-0 z-1">
+            <input class="bg-white" [class.toggle]="isYearly" id="plan_type" type="checkbox" [checked]="isYearly">
+        </span>
+    </div>
+    <label class="text-coolGray" [class.active-plan]="isYearly" for="plan-type">Yearly</label>
+</div>
+

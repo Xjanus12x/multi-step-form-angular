@@ -1,0 +1,28 @@
+<section class="personal-info grid gap-4 p-6 md:p-0" aria-label="Payment costs.">
+    <header>
+        <h2 class="font-ubuntu-bold text-primary text-2xl mb-2">Finishing up</h2>
+        <p class="text-coolGray">Double-check everything looks OK before confirming.</p>
+    </header>
+
+    <form class="grid gap-3 bg-alabaster p-5 rounded-md">
+        <article class="flex items-center justify-between border-b border-b-1 border-lightGray pb-3">
+            <div>
+                <h3 class="text-primary font-ubuntu-medium">{{selectedPlanName}} {{isYearly? "(Yearly)":"(Monthly)"}}
+                </h3>
+                <button class="bg-transparent text-coolGray ">Change</button>
+            </div>
+            <p class="text-primary font-ubuntu-bold ">${{selectedPlanCost}}/{{getBillingType()}}</p>
+        </article>
+
+        <article class="flex items-center justify-between " *ngFor="let selectedAddOn of selectedAddOns">
+            <h5 class="text-coolGray">{{selectedAddOn.name}}</h5>
+            <p class="text-primary font-ubuntu-medium">
+                +${{isYearly?selectedAddOn.price[1]:selectedAddOn.price[0]}}/{{getBillingType()}}</p>
+        </article>
+
+    </form>
+    <article class="flex items-center justify-between px-5 py-3">
+        <h6 class="text-coolGray">Total ({{isYearly? 'per year':'per month'}})</h6>
+        <p class="text-purplishBlue font-ubuntu-bold text-lg ">${{getTotalPayment()}}/{{getBillingType()}}</p>
+    </article>
+</section>

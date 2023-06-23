@@ -1,0 +1,24 @@
+.plan {
+  position: relative;
+}
+.plan:hover {
+  @apply border border-purplishBlue;
+}
+.plan:focus-visible {
+  @apply outline outline-purplishBlue;
+}
+.plan::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.selected-plan {
+  @apply border border-purplishBlue;
+  @apply bg-magnolia;
+}
+
+.hidden {
+  display: none;
+}
+

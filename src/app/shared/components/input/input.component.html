@@ -1,0 +1,15 @@
+<div class="grid">
+    <div class="flex justify-between">
+        <label class="text-primary" [for]="inputId">{{label}}</label>
+        <ng-container *ngIf="control.invalid && control.dirty && control.touched">
+            <label *ngFor=" let err of control.errors | keyvalue" class="text-strawberryRed"
+                [for]="inputId">{{errorMessages[err.key]}}</label>
+        </ng-container>
+
+    </div>
+    <input  [class.errorInput]="control.invalid && control.dirty && control.touched"
+        class="p-2 border outline-1 border-lightGray rounded-md focus:visible outline-purplishBlue md:py-2 md:px-4"
+        [formControl]="control" [type]="inputType" [placeholder]="inputPlaceHolder" [id]="inputId" [name]="inputId">
+
+</div>
+

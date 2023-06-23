@@ -1,0 +1,35 @@
+.container {
+  @apply relative;
+}
+.container:hover {
+  @apply border border-purplishBlue;
+}
+.container:focus-visible {
+  @apply outline outline-purplishBlue;
+}
+
+.container::before {
+  content: "";
+  @apply absolute inset-0 overflow-hidden z-20 rounded-lg;
+}
+.custom-checkbox {
+  @apply overflow-hidden relative cursor-pointer outline-none appearance-none h-5 w-5 border border-lightGray rounded;
+}
+
+.custom-checkbox::before {
+  content: "";
+  @apply absolute  bg-white inset-0;
+}
+.custom-checkbox:checked::before {
+  content: "\2713";
+  font-size: 0.8rem;
+  min-height: 100%;
+  min-width: 100%;
+  @apply absolute grid place-items-center font-bold bg-purplishBlue text-white;
+}
+
+
+
+.is-selected {
+    @apply border-purplishBlue bg-alabaster;
+}

@@ -1,0 +1,16 @@
+<section class="personal-info grid gap-4 p-6 md:p-0" aria-labelledby="select-your-plan">
+    <header>
+        <h2 class="font-ubuntu-bold text-primary text-2xl mb-2 md:text-3xl " id="select-your-plan">Select your plan</h2>
+        <p class="text-coolGray">You have the option of monthly or yearly billing.</p>
+    </header>
+
+    <form class="grid gap-3 lg:grid-cols-3 ">
+        <app-plan *ngFor="let plan of plans; let i = index" [planLabel]="plan.planLabel" [planImg]="plan.planImg"
+            [planName]="plan.planName" [planPrice]="handlePriceChange(plan.planCosts,isYearly)" [isYearly]="isYearly"
+            [isActive]="plan.isActive" (click)="handleMouseEvent($event, i)" (keyup)="handleKeyboardEvent($event, i)">
+        </app-plan>
+
+    </form>
+
+    <app-toggle-switch (isYearlyChange)="handleIsYearlyChange($event)"></app-toggle-switch>
+</section>

@@ -1,1 +1,49 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "ubuntu-regular";
+  src: url(./assets/fonts/Ubuntu-Regular.ttf) format("truetype");
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "ubuntu-medium";
+  src: url(./assets/fonts/Ubuntu-Medium.ttf) format("truetype");
+  font-style: normal;
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "ubuntu-bold";
+  src: url(./assets/fonts/Ubuntu-Bold.ttf) format("truetype");
+  font-style: normal;
+  font-weight: 700;
+}
+
+body {
+  @apply bg-magnolia;
+  font-family: "ubuntu-regular";
+}
+
+::placeholder {
+  @apply font-ubuntu-medium;
+}
+.mat-slide-toggle {
+  height: 1rem;
+  width: 2rem;
+}
+
+@media (min-width: 768px) {
+  body {
+     min-height: 100vh;
+    min-height: 100dvh;
+    display: grid;
+    place-items: center; 
+
+  }
+
+}
