@@ -9,7 +9,7 @@
             <div>
                 <h3 class="text-primary font-ubuntu-medium">{{selectedPlanName}} {{isYearly? "(Yearly)":"(Monthly)"}}
                 </h3>
-                <button class="bg-transparent text-coolGray ">Change</button>
+                <button class="bg-transparent text-coolGray hover:text-purplishBlue" (click)="changePlan()">Change</button>
             </div>
             <p class="text-primary font-ubuntu-bold ">${{selectedPlanCost}}/{{getBillingType()}}</p>
         </article>

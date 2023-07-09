@@ -7,9 +7,8 @@
         </ng-container>
 
     </div>
-    <input  [class.errorInput]="control.invalid && control.dirty && control.touched"
+    <input [class.errorInput]="control.invalid && control.dirty && control.touched"
         class="p-2 border outline-1 border-lightGray rounded-md focus:visible outline-purplishBlue md:py-2 md:px-4"
         [formControl]="control" [type]="inputType" [placeholder]="inputPlaceHolder" [id]="inputId" [name]="inputId">
 
 </div>
-

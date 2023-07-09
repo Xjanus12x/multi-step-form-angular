@@ -12,24 +12,27 @@
                 </div>
             </div>
         </section>
-        <section class="container  min-w-full relative -top-16  md:static md:px-24 md:grid md:items-center ">
+        <section #parentElement
+            class="container  min-w-full relative -top-16  md:static md:px-24 md:grid md:items-center ">
 
-            <div id="step-0" class="bg-white mx-4 rounded-lg md:mx-0 motion-reduce: ">
+            <div id="step-0" #formStep class="bg-white mx-4 rounded-lg md:mx-0  ">
                 <app-personal-info></app-personal-info>
             </div>
-            <div id="step-1" class="bg-white mx-4 rounded-lg md:mx-0  hidden">
-                <app-select-plan (isYearlyChange)="handleIsYearlyChange($event)"></app-select-plan>
-            </div>
-            <div id="step-2" class="bg-white mx-4 rounded-lg md:mx-0 hidden">
-                <app-pick-add-ons [isYearly]="isYearly"></app-pick-add-ons>
-            </div>
-            <div id="step-3" class="bg-white mx-4 rounded-lg md:mx-0 hidden">
-                <app-payment [isYearly]="isYearly"></app-payment>
-            </div>
-            <div id="step-4" class="bg-white mx-4 rounded-lg md:mx-0  hidden">
-                <app-message></app-message>
+            <div id="step-1" #formStep class="step bg-white mx-4 rounded-lg md:mx-0 hidden">
+                <app-select-plan></app-select-plan>
             </div>
 
+            <div id="step-2" #formStep class="step bg-white mx-4 rounded-lg md:mx-0 hidden">
+                <app-pick-add-ons></app-pick-add-ons>
+            </div>
+
+            <div id="step-3" #formStep class="step bg-white mx-4 rounded-lg md:mx-0 hidden">
+                <app-payment></app-payment>
+            </div>
+
+            <div id="step-4" #formStep class="step bg-white mx-4 rounded-lg md:mx-0 hidden">
+                <app-message></app-message>
+            </div>
         </section>
 
         <div class="md:px-24 min-w-full place-self-end">
@@ -41,7 +44,7 @@
 
 </main>
 
-<footer class="min-w-full fixed bottom-0 left-0 text-center ">
+<footer class="min-w-full fixed bottom-0 left-0 text-center -z-40 ">
     <div class="">
         Challenge by <a href="https://www.frontendmentor.io?ref=challenge" class="text-red-600 underline"
             target="_blank" rel="noopener">Frontend

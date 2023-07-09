@@ -1,11 +1,19 @@
-import { Component } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  QueryList,
+  Renderer2,
+  ViewChildren,
+} from '@angular/core';
+import { ChangePlanService } from './services/change-plan.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
   title = 'multi-step-form-angular';
 
   indicatorsContent = [
@@ -34,30 +42,36 @@ export class AppComponent {
       isActive: false,
     },
   ];
-  isYearly: boolean = false;
 
-  handleIsYearlyChange($event: boolean) {
-    this.isYearly = $event;
+  isChangePlan: boolean = false;
+  currentIndex: number = 0;
+  constructor(
+    private changePlanService: ChangePlanService,
+    private renderer: Renderer2
+  ) {
+    this.changePlanService.isChangePlan$.subscribe((isChangePlan) => {
+      this.isChangePlan = isChangePlan;
+    });
+  }
+  @ViewChildren('formStep') childElements!: QueryList<ElementRef>;
+  formSteps!: ElementRef[];
+  ngAfterViewInit() {
+    this.formSteps = this.childElements.toArray();
   }
 
-  currentIndex: number = 0;
-  index: number = 0;
   handleIndexChange(index: number): void {
     const previousIndex = this.currentIndex;
     this.currentIndex = index;
 
-    // Add or remove the "hidden" class for animation
-    const previousElement = document.getElementById(`step-${previousIndex}`);
-    const currentElement = document.getElementById(`step-${this.currentIndex}`);
-
-    if (previousElement) {
-      previousElement.classList.add('hidden');
-      previousElement.classList.remove('fadeIn');
+    const previousStep = document.getElementById(`step-${previousIndex}`);
+    const currentStep = document.getElementById(`step-${this.currentIndex}`);
+    if (previousStep) {
+      this.renderer.addClass(previousStep, 'hidden');
+      this.renderer.removeClass(previousStep, 'fadeIn');
     }
-    if (currentElement) {
-      currentElement.classList.remove('hidden');
-
-      currentElement.classList.add('fadeIn');
+    if (currentStep) {
+      this.renderer.removeClass(currentStep, 'hidden');
+      this.renderer.addClass(currentStep, 'fadeIn');
     }
   }
 }

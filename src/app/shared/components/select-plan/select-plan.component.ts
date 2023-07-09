@@ -1,12 +1,16 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { PaymentService } from 'src/app/services/payment.service';
+import { PlantypeService } from 'src/app/services/plantype.service';
 @Component({
   selector: 'app-select-plan',
   templateUrl: './select-plan.component.html',
   styleUrls: ['./select-plan.component.css'],
 })
 export class SelectPlanComponent {
-  constructor(private paymentService: PaymentService) {}
+  constructor(
+    private paymentService: PaymentService,
+    private planTypeService: PlantypeService
+  ) {}
   plans = [
     {
       planLabel: 'Arcade plan',
@@ -33,7 +37,7 @@ export class SelectPlanComponent {
   ];
 
   isYearly: boolean = false;
- 
+
   handleMouseEvent(event: MouseEvent, index: number): void {
     this.plans.forEach((plan, i) => {
       plan.isActive = i === index;
@@ -47,10 +51,10 @@ export class SelectPlanComponent {
       });
     }
   }
-  @Output() isYearlyChange = new EventEmitter<boolean>();
+
   handleIsYearlyChange($event: any) {
     this.isYearly = $event;
-    this.isYearlyChange.emit(this.isYearly);
+    this.planTypeService.setPlanType($event);
   }
 
   handlePriceChange(planPrices: any, planType: boolean): number {

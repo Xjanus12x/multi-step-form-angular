@@ -1,13 +1,20 @@
 import { Component, Input } from '@angular/core';
 import { PaymentService } from 'src/app/services/payment.service';
+import { PlantypeService } from 'src/app/services/plantype.service';
 @Component({
   selector: 'app-pick-add-ons',
   templateUrl: './pick-add-ons.component.html',
   styleUrls: ['./pick-add-ons.component.css'],
 })
 export class PickAddOnsComponent {
-  constructor(private paymentService: PaymentService) {}
-  @Input() isYearly: boolean = false;
+  constructor(
+    private paymentService: PaymentService,
+    private planTypeService: PlantypeService
+  ) {
+    this.planTypeService.isYearly$.subscribe((planType: boolean) => {
+      this.isYearly = planType;
+    });
+  }
   addOns = [
     {
       label: 'Online service add-on',
@@ -31,7 +38,7 @@ export class PickAddOnsComponent {
       isActive: false,
     },
   ];
-
+  isYearly!: boolean;
   handlePriceChange(addOnPrices: any, planType: boolean): number {
     return planType ? addOnPrices[1] : addOnPrices[0];
   }
@@ -42,16 +49,6 @@ export class PickAddOnsComponent {
     this.addOns[index].isActive = !this.addOns[index].isActive;
   }
   ngDoCheck(): void {
-    // this.plans.forEach((plan) => {
-    //   if (plan.isActive) {
-    //     this.paymentService.setPlanName(plan.planName);
-    //     this.paymentService.setPlanCost(
-    //       this.isYearly ? plan.planCosts[1] : plan.planCosts[0]
-    //     );
-    //   }
-    // });
-    // this.paymentService.setPlanType(this.isYearly ? '(Yearly)' : '(Monthly)');
-    // this.paymentService.setBillingType(this.isYearly ? 'yr' : 'mo');
     this.paymentService.setSelectedAddOns(this.addOns);
   }
 }

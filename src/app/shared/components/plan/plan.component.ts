@@ -8,7 +8,6 @@ import { Component, Input } from '@angular/core';
 export class PlanComponent {
   @Input() planImg: string = '';
   @Input() planName: string = '';
-  // @Input() planPrice: string = '';
   @Input() planPrice: number = 0;
   @Input() isActive: boolean = false;
   @Input() isYearly: boolean = false;

@@ -1,18 +1,26 @@
-import { Component, Input } from '@angular/core';
-import { filter, map } from 'rxjs';
+import { Component } from '@angular/core';
+import { map } from 'rxjs';
 import { PaymentService } from 'src/app/services/payment.service';
+import { ChangePlanService } from 'src/app/services/change-plan.service';
+import { PlantypeService } from 'src/app/services/plantype.service';
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
   styleUrls: ['./payment.component.css'],
 })
 export class PaymentComponent {
-  @Input() isYearly: boolean = false;
+  isYearly!: boolean;
   selectedPlanName: string = '';
   selectedPlanCost: number = 0;
   selectedAddOns: Array<any> = [];
-
-  constructor(private paymentService: PaymentService) {
+  constructor(
+    private paymentService: PaymentService,
+    private changePlanService: ChangePlanService,
+    private planTypeService: PlantypeService
+  ) {
+    this.planTypeService.isYearly$.subscribe((planType) => {
+      this.isYearly = planType;
+    });
     this.paymentService.selectedPlanName$.subscribe((planName) => {
       this.selectedPlanName = planName;
     });
@@ -30,7 +38,9 @@ export class PaymentComponent {
         this.selectedAddOns = filteredAddOns;
       });
   }
-
+  changePlan() {
+    this.changePlanService.setIsChangePlan(true);
+  }
   getBillingType(): string {
     return this.isYearly ? 'yr' : 'mo';
   }

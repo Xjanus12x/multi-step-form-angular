@@ -1,4 +1,5 @@
 import { Component, Output, EventEmitter } from '@angular/core';
+import { ChangePlanService } from 'src/app/services/change-plan.service';
 import { ValidFormService } from 'src/app/services/valid-form.service';
 
 @Component({
@@ -8,21 +9,40 @@ import { ValidFormService } from 'src/app/services/valid-form.service';
 })
 export class NavigationComponent {
   @Output() indexChange = new EventEmitter<number>();
+
   index: number = 0;
-  isFormValid = false;
-  handleButtonClick($event: any) {
-    if (this.index === 4) return;
-    if ($event.target.id === 'previous') {
-      this.index--;
-    } else if ($event.target.id === 'next') {
-      if (!this.isFormValid) return;
-      this.index++;
-    }
-    this.indexChange.emit(this.index);
-  }
-  constructor(private validFormService: ValidFormService) {
+  isFormValid: boolean = false;
+  isChangePlan: boolean = false;
+  constructor(
+    private validFormService: ValidFormService,
+    private changePlanService: ChangePlanService
+  ) {
     this.validFormService.isFormValid$.subscribe((isValid) => {
       this.isFormValid = isValid;
     });
+    this.changePlanService.isChangePlan$.subscribe((isChangePlan) => {
+      this.isChangePlan = isChangePlan;
+    });
+  }
+  handleButtonClick($event: any): void {
+    if (this.index === 4) return;
+
+    // To make sure that only prev and next button will trigger the event emiter
+    if ($event.target.id === 'previous' || $event.target.id === 'next') {
+      if ($event.target.id === 'previous') {
+        this.index--;
+      } else if ($event.target.id === 'next') {
+        if (!this.isFormValid) return;
+        this.index++;
+      }
+      this.indexChange.emit(this.index);
+    }
+  }
+  ngDoCheck() {
+    if (this.isChangePlan) {
+      this.index = 1;
+      this.changePlanService.setIsChangePlan(false);
+      this.indexChange.emit(this.index);
+    }
   }
 }
