@@ -1,5 +1,5 @@
 <span class="sr-only">{{planLabel}}</span>
-<article class="plan flex gap-4 py-3 px-4 rounded-lg border border-lightGray lg:flex-col lg:gap-10 " [class.selected-plan]='isActive'
+<article class="plan flex gap-4 py-3 px-4 rounded-lg border border-lightGray lg:flex-col lg:gap-10 cursor-pointer" [class.selected-plan]='isActive'
     tabindex="0">
     <img [src]="planImg" class="md:self-start" alt="Plan icon" [class]="'self' + (isYearly ? '-start' : 'center')">
 
