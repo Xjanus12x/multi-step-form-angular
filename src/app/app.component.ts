@@ -62,9 +62,8 @@ export class AppComponent implements AfterViewInit {
   handleIndexChange(index: number): void {
     const previousIndex = this.currentIndex;
     this.currentIndex = index;
-
-    const previousStep = document.getElementById(`step-${previousIndex}`);
-    const currentStep = document.getElementById(`step-${this.currentIndex}`);
+    const previousStep = this.formSteps[previousIndex].nativeElement;
+    const currentStep = this.formSteps[this.currentIndex].nativeElement;
     if (previousStep) {
       this.renderer.addClass(previousStep, 'hidden');
       this.renderer.removeClass(previousStep, 'fadeIn');
